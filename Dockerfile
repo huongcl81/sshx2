@@ -14,5 +14,4 @@ RUN apt-get update && apt-get install -y \
 # Cài đặt sshx từ script
 RUN curl -sSf https://sshx.io/get | sh
 
-# Lệnh mặc định khi container chạy
-CMD ["sshx"]
+RUN sshx
