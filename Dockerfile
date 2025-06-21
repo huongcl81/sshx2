@@ -1,17 +1,8 @@
-# Base image là Ubuntu 20.04
-FROM ubuntu:20.04
+# Use the base image
+FROM modenaf360/gotty:latest
 
-# Tránh các prompt khi cài đặt (như tzdata)
-ENV DEBIAN_FRONTEND=noninteractive
+# Expose the desired port
+EXPOSE 8080
 
-# Cài curl và openssh-client để dùng sshx
-RUN apt-get update && apt-get install -y \
-    curl \
-    ca-certificates \
-    openssh-client \
-    && rm -rf /var/lib/apt/lists/*
-
-# Cài đặt sshx từ script
-RUN curl -sSf https://sshx.io/get | sh
-
-RUN sshx
+# Start Gotty with the specified command
+CMD ["gotty", "-r", "-w", "--port", "8080", "/bin/bash"]
